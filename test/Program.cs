@@ -49,6 +49,7 @@ namespace test
                     }
                     else
                     {
+                        Console.Clear();
                         Console.WriteLine("No valid symbol was entered");
                     }
                 }
@@ -59,9 +60,7 @@ namespace test
             double number1 = convertToInt(Snumbers[0]);
             double number2 = convertToInt(Snumbers[1]);
             if (Snumbers.Length > 2)
-            {
                 return Double.NaN;
-            }
             return number1 * number2;
         }
         static double Devide(string[] Snumbers)
@@ -69,9 +68,7 @@ namespace test
             double number1 = convertToInt(Snumbers[0]);
             double number2 = convertToInt(Snumbers[1]);
             if (Snumbers.Length > 2)
-            {
                 return Double.NaN;
-            }
             return (number1 / number2);
         }
         static double Addtion(string[] Snumbers)
@@ -79,9 +76,7 @@ namespace test
             double number1 = convertToInt(Snumbers[0]);
             double number2 = convertToInt(Snumbers[1]);
             if (Snumbers.Length > 2)
-            {
                 return Double.NaN;
-            }
             return number1 + number2;
         }
         static double Substration(string[] Snumbers)
@@ -89,9 +84,7 @@ namespace test
             double number1 = convertToInt(Snumbers[0]);
             double number2 = convertToInt(Snumbers[1]);
             if (Snumbers.Length > 2)
-            {
                 return Double.NaN;
-            }
             return number1 - number2;
         }
         static double convertToInt(string Snumber)
@@ -106,6 +99,7 @@ namespace test
         {
             if (Double.IsNaN(result))
             {
+                Console.Clear();
                 Console.WriteLine("Ether the equation in wrongly formated or you dived 0 by 0");
             }
             else
