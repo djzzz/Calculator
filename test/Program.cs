@@ -73,7 +73,7 @@ namespace test
             double number2 = convertToDouble(Snumbers[1]);
             if (Snumbers.Length > 2)
                 return Double.NaN;
-            if (number1 == 0 && number2 == 0)
+            if (number1 == 0 || number2 == 0)
                 devidedByZero = true;
             return (number1 / number2);
         }
