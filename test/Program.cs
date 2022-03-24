@@ -16,11 +16,14 @@ namespace test
             string SubstractionSymbol = "-";
             while (!exit)
             {
+                
                 mathLabMessage();
                 Console.WriteLine("-1 to exit");
                 Console.WriteLine("Enter a quary:");
+                devidedByZero = false;
                 string equation = Console.ReadLine();
                 double result;
+
                 if(equation == "-1")
                 {
                     exit = true;
