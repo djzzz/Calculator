@@ -4,6 +4,7 @@ namespace test
 {
     class Program
     {
+        static public bool devidedByZero = false;
         static void Main(string[] args)
         {
             welcomeMessage();
@@ -57,37 +58,39 @@ namespace test
         }
         static double Multipication(string[] Snumbers)
         {
-            double number1 = convertToInt(Snumbers[0]);
-            double number2 = convertToInt(Snumbers[1]);
+            double number1 = convertToDouble(Snumbers[0]);
+            double number2 = convertToDouble(Snumbers[1]);
             if (Snumbers.Length > 2)
                 return Double.NaN;
             return number1 * number2;
         }
         static double Devide(string[] Snumbers)
         {
-            double number1 = convertToInt(Snumbers[0]);
-            double number2 = convertToInt(Snumbers[1]);
+            double number1 = convertToDouble(Snumbers[0]);
+            double number2 = convertToDouble(Snumbers[1]);
             if (Snumbers.Length > 2)
                 return Double.NaN;
+            if (number1 == 0 && number2 == 0)
+                devidedByZero = true;
             return (number1 / number2);
         }
         static double Addtion(string[] Snumbers)
         {
-            double number1 = convertToInt(Snumbers[0]);
-            double number2 = convertToInt(Snumbers[1]);
+            double number1 = convertToDouble(Snumbers[0]);
+            double number2 = convertToDouble(Snumbers[1]);
             if (Snumbers.Length > 2)
                 return Double.NaN;
             return number1 + number2;
         }
         static double Substration(string[] Snumbers)
         {
-            double number1 = convertToInt(Snumbers[0]);
-            double number2 = convertToInt(Snumbers[1]);
+            double number1 = convertToDouble(Snumbers[0]);
+            double number2 = convertToDouble(Snumbers[1]);
             if (Snumbers.Length > 2)
                 return Double.NaN;
             return number1 - number2;
         }
-        static double convertToInt(string Snumber)
+        static double convertToDouble(string Snumber)
         {
             double number;
             bool success = double.TryParse(Snumber, out number);
@@ -99,8 +102,17 @@ namespace test
         {
             if (Double.IsNaN(result))
             {
-                Console.Clear();
-                Console.WriteLine("Ether the equation in wrongly formated or you dived 0 by 0");
+                if (devidedByZero)
+                {
+                    Console.Clear();
+                    Console.WriteLine("you dived 0 by 0");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Ether the equation in wrongly formated");
+                }
+
             }
             else
             {
