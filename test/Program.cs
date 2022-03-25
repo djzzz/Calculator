@@ -6,9 +6,9 @@ namespace test
     {
         static public bool devidedByZero = false;
         static public bool wronglyFormated = false;
-        static void Main(string[] args)
+        static void Main()
         {
-            welcomeMessage();
+            WelcomeMessage();
             
             bool exit = false;
             string MultipicationSymbol = "*";
@@ -18,7 +18,7 @@ namespace test
             while (!exit)
             {
                 
-                mathLabMessage();
+                MathLabMessage();
                 Console.WriteLine("-1 to exit");
                 Console.WriteLine("Enter a quary:");
                 devidedByZero = false;
@@ -34,36 +34,36 @@ namespace test
                     if (equation.Contains(MultipicationSymbol))
                     {
 
-                        double[] numbers = readEquation(equation, MultipicationSymbol);
+                        double[] numbers = ReadEquation(equation, MultipicationSymbol);
                         result = Multipication(numbers[0], numbers[1]);
                         if (wronglyFormated)
                             result = Double.NaN;
-                        printResult(result);
+                        PrintResult(result);
                     }
                     else if (equation.Contains(DevideSymbol))
                     {
-                        double[] numbers = readEquation(equation, DevideSymbol);
+                        double[] numbers = ReadEquation(equation, DevideSymbol);
                         result = Devide(numbers[0], numbers[1]);
                         if (wronglyFormated)
                             result = Double.NaN;
-                        printResult(result);
+                        PrintResult(result);
 
                     }
                     else if (equation.Contains(AddtionSymbol))
                     {
-                        double[] numbers = readEquation(equation, AddtionSymbol);
+                        double[] numbers = ReadEquation(equation, AddtionSymbol);
                         result = Addtion(numbers[0], numbers[1]);
                         if (wronglyFormated)
                             result = Double.NaN;
-                        printResult(result);
+                        PrintResult(result);
                     }
                     else if (equation.Contains(SubstractionSymbol))
                     {
-                        double[] numbers = readEquation(equation, SubstractionSymbol);
+                        double[] numbers = ReadEquation(equation, SubstractionSymbol);
                         result = Substration(numbers[0], numbers[1]);
                         if (wronglyFormated)
                             result = Double.NaN;
-                        printResult(result);
+                        PrintResult(result);
                     }
                     else
                     {
@@ -73,12 +73,12 @@ namespace test
                 }
             }
         }
-        static double[] readEquation(string equation, string SubstractionSymbol)
+        static double[] ReadEquation(string equation, string SubstractionSymbol)
         {
             string[] Snumbers = equation.Split(SubstractionSymbol);
             double[] numbers = new double[2];
-            numbers[0] = convertToDouble(Snumbers[0]);
-            numbers[1] = convertToDouble(Snumbers[1]);
+            numbers[0] = ConvertToDouble(Snumbers[0]);
+            numbers[1] = ConvertToDouble(Snumbers[1]);
             if (Snumbers.Length > 2)
                 wronglyFormated = true;
             return numbers;
@@ -106,7 +106,7 @@ namespace test
         {
             return number1 - number2;
         }
-        static double convertToDouble(string Snumber)
+        static double ConvertToDouble(string Snumber)
         {
             double number;
             bool success = double.TryParse(Snumber, out number);
@@ -114,7 +114,7 @@ namespace test
                 return number;
             return Double.NaN;
         }
-        static void printResult(double result)
+        static void PrintResult(double result)
         {
             if (Double.IsNaN(result))
             {
@@ -138,13 +138,13 @@ namespace test
             }
             
         }
-        static void welcomeMessage()
+        static void WelcomeMessage()
         {
             Console.WriteLine("Welcome to my simple calculator");
             Console.WriteLine("Write in a quary with 2 numbers and a math symbol in the middle");
             Console.WriteLine("Exemple: 2 + 2");
         }
-        static void mathLabMessage()
+        static void MathLabMessage()
         {
             Console.WriteLine("* = Muliplication");
             Console.WriteLine("/ = Devide");
