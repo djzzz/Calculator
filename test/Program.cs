@@ -5,6 +5,7 @@ namespace test
     class Program
     {
         static public bool devidedByZero = false;
+        static public bool wronglyFormated = false;
         static void Main(string[] args)
         {
             welcomeMessage();
@@ -32,23 +33,36 @@ namespace test
                 {
                     if (equation.Contains(MultipicationSymbol))
                     {
-                        result = Multipication(equation.Split(MultipicationSymbol));
+
+                        double[] numbers = readEquation(equation, MultipicationSymbol);
+                        result = Multipication(numbers[0], numbers[1]);
+                        if (wronglyFormated)
+                            result = Double.NaN;
                         printResult(result);
                     }
                     else if (equation.Contains(DevideSymbol))
                     {
-                        result = Devide(equation.Split(DevideSymbol));
+                        double[] numbers = readEquation(equation, DevideSymbol);
+                        result = Devide(numbers[0], numbers[1]);
+                        if (wronglyFormated)
+                            result = Double.NaN;
                         printResult(result);
 
                     }
                     else if (equation.Contains(AddtionSymbol))
                     {
-                        result = Addtion(equation.Split(AddtionSymbol));
+                        double[] numbers = readEquation(equation, AddtionSymbol);
+                        result = Addtion(numbers[0], numbers[1]);
+                        if (wronglyFormated)
+                            result = Double.NaN;
                         printResult(result);
                     }
                     else if (equation.Contains(SubstractionSymbol))
                     {
-                        result = Substration(equation.Split(SubstractionSymbol));
+                        double[] numbers = readEquation(equation, SubstractionSymbol);
+                        result = Substration(numbers[0], numbers[1]);
+                        if (wronglyFormated)
+                            result = Double.NaN;
                         printResult(result);
                     }
                     else
@@ -59,38 +73,37 @@ namespace test
                 }
             }
         }
-        static double Multipication(string[] Snumbers)
+        static double[] readEquation(string equation, string SubstractionSymbol)
         {
-            double number1 = convertToDouble(Snumbers[0]);
-            double number2 = convertToDouble(Snumbers[1]);
+            string[] Snumbers = equation.Split(SubstractionSymbol);
+            double[] numbers = new double[2];
+            numbers[0] = convertToDouble(Snumbers[0]);
+            numbers[1] = convertToDouble(Snumbers[1]);
             if (Snumbers.Length > 2)
-                return Double.NaN;
+                wronglyFormated = true;
+            return numbers;
+        }
+        static double Multipication(double number1, double number2)
+        {
             return number1 * number2;
         }
-        static double Devide(string[] Snumbers)
+        static double Devide(double number1, double number2)
         {
-            double number1 = convertToDouble(Snumbers[0]);
-            double number2 = convertToDouble(Snumbers[1]);
-            if (Snumbers.Length > 2)
-                return Double.NaN;
             if (number1 == 0 || number2 == 0)
+            {
                 devidedByZero = true;
+                return double.NaN;
+            }
+                
             return (number1 / number2);
         }
-        static double Addtion(string[] Snumbers)
+        static double Addtion(double number1, double number2)
         {
-            double number1 = convertToDouble(Snumbers[0]);
-            double number2 = convertToDouble(Snumbers[1]);
-            if (Snumbers.Length > 2)
-                return Double.NaN;
+
             return number1 + number2;
         }
-        static double Substration(string[] Snumbers)
+        static double Substration(double number1, double number2)
         {
-            double number1 = convertToDouble(Snumbers[0]);
-            double number2 = convertToDouble(Snumbers[1]);
-            if (Snumbers.Length > 2)
-                return Double.NaN;
             return number1 - number2;
         }
         static double convertToDouble(string Snumber)
