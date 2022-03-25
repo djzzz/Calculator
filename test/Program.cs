@@ -9,7 +9,7 @@ namespace test
         static void Main()
         {
             WelcomeMessage();
-            
+
             bool exit = false;
             string MultipicationSymbol = "*";
             string DevideSymbol = "/";
@@ -17,15 +17,15 @@ namespace test
             string SubstractionSymbol = "-";
             while (!exit)
             {
-                
                 MathLabMessage();
                 Console.WriteLine("-1 to exit");
                 Console.WriteLine("Enter a quary:");
                 devidedByZero = false;
+                wronglyFormated = false;
                 string equation = Console.ReadLine();
                 double result;
 
-                if(equation == "-1")
+                if (equation == "-1")
                 {
                     exit = true;
                 }
@@ -73,9 +73,9 @@ namespace test
                 }
             }
         }
-        static double[] ReadEquation(string equation, string SubstractionSymbol)
+        static double[] ReadEquation(string equation, string Symbol)
         {
-            string[] Snumbers = equation.Split(SubstractionSymbol);
+            string[] Snumbers = equation.Split(Symbol);
             double[] numbers = new double[2];
             numbers[0] = ConvertToDouble(Snumbers[0]);
             numbers[1] = ConvertToDouble(Snumbers[1]);
@@ -94,7 +94,7 @@ namespace test
                 devidedByZero = true;
                 return double.NaN;
             }
-                
+
             return (number1 / number2);
         }
         static double Addtion(double number1, double number2)
@@ -116,27 +116,24 @@ namespace test
         }
         static void PrintResult(double result)
         {
+            Console.Clear();
             if (Double.IsNaN(result))
             {
                 if (devidedByZero)
                 {
-                    Console.Clear();
                     Console.WriteLine("you dived 0 by 0");
                 }
-                else
+                if (wronglyFormated)
                 {
-                    Console.Clear();
                     Console.WriteLine("Ether the equation in wrongly formated");
                 }
-
             }
             else
             {
-                Console.Clear();
                 Console.WriteLine("The result is:");
                 Console.WriteLine(result);
             }
-            
+
         }
         static void WelcomeMessage()
         {
